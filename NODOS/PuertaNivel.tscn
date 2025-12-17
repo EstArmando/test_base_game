@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dtef1pyotx2vm"]
+
+[ext_resource type="Texture2D" uid="uid://cekgg4osxucab" path="res://IMAGENES/window_02.png" id="1_65df1"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tpx4o"]
+size = Vector2(84, 109)
+
+[node name="RigidBody2D" type="RigidBody2D"]
+
+[node name="Window02" type="Sprite2D" parent="."]
+scale = Vector2(0.16210938, 0.21289063)
+texture = ExtResource("1_65df1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_tpx4o")

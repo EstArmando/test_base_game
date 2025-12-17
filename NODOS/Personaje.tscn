@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://bj3m7l1gd7yde"]
+
+[ext_resource type="Script" uid="uid://0q65tlfvdtg8" path="res://Scrips/CharacterBody2d.cs" id="1_x0tbo"]
+[ext_resource type="Texture2D" uid="uid://cowiikcky3i0a" path="res://IMAGENES/protaRediseño.png" id="2_0ybpu"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_y2bws"]
+radius = 37.0
+height = 152.0
+
+[node name="Personaje" type="CharacterBody2D" groups=["player"]]
+z_index = 2
+script = ExtResource("1_x0tbo")
+
+[node name="ProtaRediseño" type="Sprite2D" parent="."]
+texture = ExtResource("2_0ybpu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 6)
+shape = SubResource("CapsuleShape2D_y2bws")

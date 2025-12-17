@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://b8q5b4p1u5u07"]
+
+[ext_resource type="Script" uid="uid://0yqp3jbxit1r" path="res://Scrips/PuertaNivel.cs" id="1_mnd4r"]
+[ext_resource type="Texture2D" uid="uid://cekgg4osxucab" path="res://IMAGENES/window_02.png" id="2_iail6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hgf5p"]
+size = Vector2(72, 96)
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource("1_mnd4r")
+
+[node name="Window02" type="Sprite2D" parent="."]
+position = Vector2(19, -24)
+scale = Vector2(0.14062499, 0.1875)
+texture = ExtResource("2_iail6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(19, -24)
+shape = SubResource("RectangleShape2D_hgf5p")
