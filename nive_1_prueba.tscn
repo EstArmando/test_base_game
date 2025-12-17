@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://b7sk00txajfkj" path="res://Scrips/Nive1Prueba.cs" id="1_grbc1"]
 [ext_resource type="Texture2D" uid="uid://btepia7kyetm1" path="res://IMAGENES/1dg3_egm8_211202.jpg" id="2_qhomx"]
 [ext_resource type="PackedScene" uid="uid://ccna7eic2sy2f" path="res://NODOS/Suelobase.tscn" id="4_3wddr"]
-[ext_resource type="PackedScene" uid="uid://b8q5b4p1u5u07" path="res://Scrips/area_2d.tscn" id="6_agi7m"]
+[ext_resource type="PackedScene" uid="uid://b8q5b4p1u5u07" path="res://NODOS/area_2d.tscn" id="6_agi7m"]
 
 [node name="Nive 1 prueba" type="Node2D"]
 script = ExtResource("1_grbc1")

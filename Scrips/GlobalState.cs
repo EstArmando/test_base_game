@@ -8,8 +8,8 @@ public partial class GlobalState : Node
 	// dirrecciones de las escenas de jugador y camara
 	private const string PlaerScenePath = "res://NODOS/Personaje.tscn";
 	 private const string CameraScenePath = "res://NODOS/game_camera.tscn";
-private const string InitialLevelPath = "res://nive_1_prueba.tscn";
-	private readonly Vector2 initialPlayerPosition = new Vector2(100, 400);
+	private const string InitialLevelPath = "res://nive_1_prueba.tscn";
+	private readonly Vector2 initialPlayerPosition = new Vector2(50, 400);
 
 
 
