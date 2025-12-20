@@ -1,0 +1,48 @@
+[gd_scene load_steps=6 format=3 uid="uid://bv0aapf57x5fr"]
+
+[ext_resource type="Script" uid="uid://b7sk00txajfkj" path="res://Scrips/Nive1Prueba.cs" id="1_320mp"]
+[ext_resource type="Texture2D" uid="uid://btepia7kyetm1" path="res://IMAGENES/1dg3_egm8_211202.jpg" id="2_kd3qp"]
+[ext_resource type="PackedScene" uid="uid://ccna7eic2sy2f" path="res://NODOS/Suelobase.tscn" id="3_6epq6"]
+[ext_resource type="PackedScene" uid="uid://b8q5b4p1u5u07" path="res://NODOS/area_2d.tscn" id="4_vfns5"]
+[ext_resource type="PackedScene" uid="uid://bj3m7l1gd7yde" path="res://NODOS/Personaje.tscn" id="5_h0wtr"]
+
+[node name="Nive 1 prueba" type="Node2D"]
+script = ExtResource("1_320mp")
+
+[node name="1Dg3Egm8211202" type="Sprite2D" parent="."]
+position = Vector2(586, 321)
+scale = Vector2(0.19626902, 0.17334104)
+texture = ExtResource("2_kd3qp")
+
+[node name="1Dg3Egm8211202" type="Sprite2D" parent="1Dg3Egm8211202"]
+position = Vector2(5293.1797, -8.210684)
+scale = Vector2(-0.76035315, 1.0111434)
+texture = ExtResource("2_kd3qp")
+
+[node name="StaticBody2D" parent="." instance=ExtResource("3_6epq6")]
+position = Vector2(210, 601)
+
+[node name="StaticBody2D2" parent="." instance=ExtResource("3_6epq6")]
+position = Vector2(687, 600)
+
+[node name="StaticBody2D3" parent="." instance=ExtResource("3_6epq6")]
+position = Vector2(1140, 598)
+
+[node name="StaticBody2D4" parent="." instance=ExtResource("3_6epq6")]
+position = Vector2(1603, 596)
+
+[node name="StaticBody2D5" parent="." instance=ExtResource("3_6epq6")]
+position = Vector2(1847, 596)
+
+[node name="Area2D" parent="." instance=ExtResource("4_vfns5")]
+position = Vector2(2015, 532)
+collision_layer = 0
+collision_mask = 2
+
+[node name="Personaje" parent="." instance=ExtResource("5_h0wtr")]
+position = Vector2(87, 317)
+
+[node name="SpawnPoint" type="Marker2D" parent="."]
+position = Vector2(81, 507)
+
+[connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

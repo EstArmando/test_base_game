@@ -3,21 +3,24 @@ using System;
 
 public partial class PuertaNivel : Area2D
 {
-    [Export] public String NextLevelPath { get; set; }  = "res://level_2.tscn";
-    [Export] public Vector2 SpawnPosition { get; set; } = new Vector2(50, 400);
-
-    private void _on_body_entered(Node body)
+    [Export] public string nivelASaltar = "res://nivel_2.tscn";
+   
+    public override void _Ready()
     {
-        if (body.IsInGroup("player"))
-        {
-            GlobalState globalState = GetNode<GlobalState>("/root/GlobalState");
-
-            if (globalState != null)
-            {
-                globalState.LoadScene(NextLevelPath, SpawnPosition);
-            } 
-        }
+       BodyEntered  += OnBodyEntered;
     }
 
-    
+    private void OnBodyEntered(Node2D body)
+    {  
+            if(body.IsInGroup("player"))
+            {
+                var globalState = GetTree().Root.GetNode<GlobalState>("GlobalState");
+                globalState.GuardarPartida();
+
+                var main = GetTree().Root.GetNode<Main>("MAIN");
+               
+                main.CallDeferred(nameof(Main.CargarNivel), nivelASaltar);
+
+            }
+    }
 }

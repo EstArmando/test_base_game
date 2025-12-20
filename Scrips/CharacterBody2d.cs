@@ -5,7 +5,7 @@ public partial class CharacterBody2d : CharacterBody2D
 {
 
 //Referencia al nodo GlobalState para guardar la posicion del jugador al cambiar de nivel
-    private GlobalState globalState;
+    private GlobalState _globalState;
 
     ///Declaro variables exportadas para poder modificarlas desde el editor
     [Export]
@@ -19,13 +19,30 @@ public partial class CharacterBody2d : CharacterBody2D
 
 
 //Referencia al sprite para poder cambiar la animacion segun el movimiento
-    private Sprite2D sprite;
+    private Sprite2D sprite => GetNode<Sprite2D>("ProtaRediseño");
 
 //Inicializo el nodo sprite
     public override void _Ready()
     {
-        sprite = GetNode<Sprite2D>("ProtaRediseño");
+       
+        _globalState = GetNode<GlobalState>("/root/GlobalState");
+        GD.Print($"Prota cargado con {_globalState.vidaActual} de vida");
+    }
 
+
+    public void recibirDaño(float daño)
+    {
+        _globalState.vidaActual -= daño;
+        if (_globalState.vidaActual <= 0)
+        {
+            GD.Print("El jugador ha muerto");
+        }
+    }
+
+    public void RecogerItem(string item)
+    {
+        _globalState.Inventario.Add(item);
+        GD.Print($"Item {item} recogido. Inventario actual: {string.Join(", ", _globalState.Inventario)}");
     }
 
     public override void _PhysicsProcess(double delta)
@@ -69,6 +86,8 @@ public partial class CharacterBody2d : CharacterBody2D
         MoveAndSlide(); 
 
     }
+
+
 
 }
     

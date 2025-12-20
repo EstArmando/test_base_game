@@ -1,68 +1,100 @@
 using Godot;
+using Godot.Collections;
 using System;
-using System.ComponentModel.Design.Serialization;
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Xml.Serialization;
+
 
 public partial class GlobalState : Node
 {
-	// dirrecciones de las escenas de jugador y camara
-	private const string PlaerScenePath = "res://NODOS/Personaje.tscn";
-	 private const string CameraScenePath = "res://NODOS/game_camera.tscn";
-	private const string InitialLevelPath = "res://nive_1_prueba.tscn";
-	private readonly Vector2 initialPlayerPosition = new Vector2(50, 400);
+	 [Signal] public delegate void OnHealthChangeEventHandler(float currentHealth, float maxHealth);
+
+    //datos persistentes
+    public float vidaMaxima = 100f;
+    private float _vidaActual = 100f;
+
+    private const string SAVE_FILE_PATH = "user://savegame.json";
 
 
-
-	 //codido que carga las escenas
-	private PackedScene playerScene = ResourceLoader.Load<PackedScene>(PlaerScenePath);
-	private PackedScene cameraScene = ResourceLoader.Load<PackedScene>(CameraScenePath);
-
-//instancias de jugador y camara
-	private CharacterBody2d playerInstance;
-	private Camera2D cameraInstance;
-
-
-//metodo ready que instancia y agrega las escenas como hijos
-	public override void _Ready()
-	{
-		//verificar si las escenas se cargaron correctamente
-		if (playerScene != null)
-		{
-			playerInstance = playerScene.Instantiate<CharacterBody2d>();
-			AddChild(playerInstance);
-		}
-
-		// load_scene("res://levels/Level_1.tscn");
-
-		if (cameraScene != null)
+    public float vidaActual
+    {
+        get => _vidaActual;
+        set
         {
-            cameraInstance = cameraScene.Instantiate<Camera2D>();
-            AddChild(cameraInstance);
-			
-			cameraInstance.MakeCurrent();
+            _vidaActual= Mathf.Clamp(value,0, vidaMaxima);
+            EmitSignal(SignalName.OnHealthChange, _vidaActual, vidaMaxima);
         }
-		//establecer la posicion inicial del jugador
-		if (playerInstance != null)
-		{
-			LoadScene(InitialLevelPath, initialPlayerPosition);
-		}
+    }
+
+   
+
+    public void GuardarPartida()
+    {
+
+        var  inventarioParaJson = new Godot.Collections.Array<string>(Inventario);
+
+        var datos = new Godot.Collections.Dictionary<string, Variant>
+        {
+            {"vidaActual", vidaActual },
+            {"inventario", inventarioParaJson },
+            {"nivelActual", GetTree().CurrentScene.SceneFilePath}
 
 
-	}
+        };
 
+        string jsonString = Json.Stringify(datos);
 
-	//metodo para cargar escenas con posicion de spawn
-	public void LoadScene(string path,Vector2 spawnPosition)
-	{
-		GetTree().ChangeSceneToFile(path);
+        using var file = FileAccess.Open(SAVE_FILE_PATH, FileAccess.ModeFlags.Write);
+        file.StoreString(jsonString);   
 
-		if(playerInstance != null)
-		{
-			playerInstance.Position = spawnPosition;
-		}
-	}
+        GD.Print("Partida guardada.");
+    }
 
+        public void CargarPartida()
+    {
+        if (!FileAccess.FileExists(SAVE_FILE_PATH)) return;
 
+        using var file = FileAccess.Open(SAVE_FILE_PATH, FileAccess.ModeFlags.Read);
+        string jsonString = file.GetAsText();
 
+        var json = new Json();
+        var error = json.Parse(jsonString);
 
+        if (error == Error.Ok)
+        {
+           var datos = (Dictionary)json.Data;
+
+           //cargar vida
+            if (datos.ContainsKey("vidaActual"))
+                vidaActual = (float)datos["vidaActual"];
+              //cargar inventario
+            if (datos.ContainsKey("inventario"))
+            {
+                Inventario.Clear();
+                var arrayCargado = (Godot.Collections.Array)datos["inventario"];
+                foreach (var item in arrayCargado)
+                {
+                    Inventario.Add((string)item);
+                }
+
+            }
+            if (datos.ContainsKey("nivelActual"))
+            {
+                var rutaNivel = (string)datos["nivelActual"];
+                var main = GetTree().Root.GetNode<Main>("MAIN");
+                main.CallDeferred(nameof(Main.CargarNivel), rutaNivel);
+            }
+    
+            GD.Print("inventario cargado: ");
+        }
+    }
+
+    public List<string> Inventario = new List<string>();
+
+    public override void _Ready()
+    {
+        vidaActual = vidaMaxima;
+        CargarPartida();
+    }
 }

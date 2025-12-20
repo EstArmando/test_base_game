@@ -9,6 +9,7 @@ height = 152.0
 
 [node name="Personaje" type="CharacterBody2D" groups=["player"]]
 z_index = 2
+collision_layer = 2
 script = ExtResource("1_x0tbo")
 
 [node name="ProtaRediseño" type="Sprite2D" parent="."]
@@ -17,3 +18,8 @@ texture = ExtResource("2_0ybpu")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 6)
 shape = SubResource("CapsuleShape2D_y2bws")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+limit_left = 0
+limit_smoothed = true
+position_smoothing_enabled = true
