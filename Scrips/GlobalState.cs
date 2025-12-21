@@ -24,10 +24,21 @@ public partial class GlobalState : Node
         {
             _vidaActual= Mathf.Clamp(value,0, vidaMaxima);
             EmitSignal(SignalName.OnHealthChange, _vidaActual, vidaMaxima);
+
+            if(_vidaActual <= 0)
+            {
+                
+                // Aquí puedes agregar lógica adicional para manejar la muerte del jugador
+            }
         }
     }
 
-   
+    private void morir()
+    {
+        GD.Print("El jugador ha muerto.");
+        var main = GetTree().Root.GetNode<Main>("MAIN");
+        main.CallDeferred("resetNivelActual");
+    }
 
     public void GuardarPartida()
     {

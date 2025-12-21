@@ -13,6 +13,7 @@ public partial class BarraDeSalud : TextureProgressBar
        globalState.OnHealthChange += (current, max) =>
        {
            Value = current;
+           GD.Print("Vida actualizada en la barra de salud: " + current + "/" + max);
        };
     }
 }

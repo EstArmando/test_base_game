@@ -1,11 +1,18 @@
 using Godot;
 using System;
+using System.Threading.Tasks;
 
 public partial class CharacterBody2d : CharacterBody2D
 {
 
 //Referencia al nodo GlobalState para guardar la posicion del jugador al cambiar de nivel
     private GlobalState _globalState;
+    //Variables para el knockback
+      private Vector2 _knockbackVelocity = Vector2.Zero;
+    private bool _isBeingKnockedBack = false;
+
+    private bool _IsInvulnerable = false;
+
 
     ///Declaro variables exportadas para poder modificarlas desde el editor
     [Export]
@@ -47,8 +54,25 @@ public partial class CharacterBody2d : CharacterBody2D
 
     public override void _PhysicsProcess(double delta)
     {
-        
-        Vector2 velocidadNueva = Velocity;
+        //Manejo del knockback
+        if(_isBeingKnockedBack)
+        {
+            // Aplicar el knockback
+            Velocity = _knockbackVelocity;
+         
+            // Reducir gradualmente el knockback
+            _knockbackVelocity = _knockbackVelocity.Lerp(Vector2.Zero, 0.1f);
+            
+
+            if(_knockbackVelocity.Length()< 10f)
+            {
+                _isBeingKnockedBack = false;
+            }
+             MoveAndSlide(); 
+        }
+        else
+        {
+            Vector2 velocidadNueva = Velocity;
         //Indico la gravedad
         if(!IsOnFloor())
         {
@@ -83,11 +107,34 @@ public partial class CharacterBody2d : CharacterBody2D
             velocidadNueva.X = Mathf.MoveToward(velocidadNueva.X, 0, speed);
         }
         Velocity = velocidadNueva;
-        MoveAndSlide(); 
+      
+        }
+        MoveAndSlide();
+        
 
     }
 
+//Metodo para aplicar knockback al personaje
+    public void AplicarKnockback(Vector2 direccion, float fuerza)
+    {
+        // Calculo la velocidad de knockback
+        Vector2 direccionKnockback = (GlobalPosition - direccion).Normalized();
+        // Aplico la fuerza del knockback
+        _knockbackVelocity = direccionKnockback * fuerza;
+        _isBeingKnockedBack = true;
+    }
 
+    public async Task ActivcarInvulnerabilidad(float duracion)
+    {
+        _IsInvulnerable = true;
+        GetNode<Sprite2D>("Personaje").Modulate = new Color(1.0f, 0.5f, 0.5f);
+
+        await ToSignal(GetTree().CreateTimer(duracion), "timeout");
+
+        _IsInvulnerable = false;
+        GetNode<Sprite2D>("Personaje").Modulate = new Color(1.0f, 1.0f, 1.0f);
+      
+    }
 
 }
     

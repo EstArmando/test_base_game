@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://bu5psv04kj40f"]
+
+[ext_resource type="Script" uid="uid://c8n5rwg07srpv" path="res://Scrips/Enemigo.cs" id="1_6lw7h"]
+[ext_resource type="Texture2D" uid="uid://deatxxkiujjt0" path="res://IMAGENES/calavera.png" id="2_6lw7h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6lw7h"]
+size = Vector2(7.6503987, 18.991808)
+
+[node name="Enemigo" type="Area2D"]
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_6lw7h")
+
+[node name="Calavera" type="Sprite2D" parent="."]
+position = Vector2(6.1250005, -2.6250021)
+scale = Vector2(0.7455555, 0.72555554)
+texture = ExtResource("2_6lw7h")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(4.000002, -4.5000024)
+scale = Vector2(15.946881, -7.740179)
+shape = SubResource("RectangleShape2D_6lw7h")
+
+[node name="Timer" type="Timer" parent="."]
