@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://cx8eyrxhynx6d"]
+
+[ext_resource type="Texture2D" uid="uid://c4y8mlg011tce" path="res://IMAGENES/PocionMana.png" id="1_lsvri"]
+[ext_resource type="Script" uid="uid://d30cbmhrbnbpp" path="res://Scrips/ItemPocionMana.cs" id="1_mf4ww"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mf4ww"]
+size = Vector2(23, 49)
+
+[node name="Area2D" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_mf4ww")
+
+[node name="PocionMana" type="Sprite2D" parent="."]
+scale = Vector2(0.15277778, 0.15277778)
+texture = ExtResource("1_lsvri")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.5, 0.5)
+shape = SubResource("RectangleShape2D_mf4ww")
