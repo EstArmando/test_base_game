@@ -1,10 +1,27 @@
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
 [gd_scene load_steps=6 format=3 uid="uid://bv0aapf57x5fr"]
+=======
+[gd_scene load_steps=9 format=3 uid="uid://bv0aapf57x5fr"]
+>>>>>>> Stashed changes
+=======
+[gd_scene load_steps=9 format=3 uid="uid://bv0aapf57x5fr"]
+>>>>>>> Stashed changes
 
 [ext_resource type="Script" uid="uid://b7sk00txajfkj" path="res://Scrips/Nive1Prueba.cs" id="1_320mp"]
 [ext_resource type="Texture2D" uid="uid://btepia7kyetm1" path="res://IMAGENES/1dg3_egm8_211202.jpg" id="2_kd3qp"]
 [ext_resource type="PackedScene" uid="uid://ccna7eic2sy2f" path="res://NODOS/Suelobase.tscn" id="3_6epq6"]
 [ext_resource type="PackedScene" uid="uid://b8q5b4p1u5u07" path="res://NODOS/area_2d.tscn" id="4_vfns5"]
 [ext_resource type="PackedScene" uid="uid://bj3m7l1gd7yde" path="res://NODOS/Personaje.tscn" id="5_h0wtr"]
+<<<<<<< Updated upstream
+=======
+[ext_resource type="PackedScene" uid="uid://bu5psv04kj40f" path="res://NODOS/Enemigo.tscn" id="6_kd3qp"]
+[ext_resource type="PackedScene" uid="uid://cnfjsvbgmn125" path="res://NODOS/botiquin.tscn" id="7_6epq6"]
+[ext_resource type="PackedScene" uid="uid://cx8eyrxhynx6d" path="res://NODOS/ItemPocionMana.tscn" id="8_vfns5"]
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 
 [node name="Nive 1 prueba" type="Node2D"]
 script = ExtResource("1_320mp")
@@ -45,4 +62,19 @@ position = Vector2(87, 317)
 [node name="SpawnPoint" type="Marker2D" parent="."]
 position = Vector2(81, 507)
 
+<<<<<<< Updated upstream
+=======
+[node name="Enemigo" parent="." instance=ExtResource("6_kd3qp")]
+position = Vector2(636, 469)
+
+[node name="Botiquin" parent="." instance=ExtResource("7_6epq6")]
+position = Vector2(257, 363)
+
+[node name="Area2D2" parent="." instance=ExtResource("8_vfns5")]
+position = Vector2(393, 555)
+
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
+>>>>>>> Stashed changes
 [connection signal="body_entered" from="Area2D" to="Area2D" method="_on_body_entered"]

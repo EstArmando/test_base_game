@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://lmqdob5a4uag"]
+[gd_scene load_steps=6 format=3 uid="uid://lmqdob5a4uag"]
 
 [ext_resource type="Script" uid="uid://cpmp708rxmr1j" path="res://Scrips/Main.cs" id="1_h7gr1"]
 [ext_resource type="Texture2D" uid="uid://b0634706wtpxp" path="res://IMAGENES/fondoBlanco.jpg" id="2_epstd"]
 [ext_resource type="Script" uid="uid://btafbha7yy1ol" path="res://Scrips/BarraDeSalud.cs" id="2_xdcoo"]
 [ext_resource type="Texture2D" uid="uid://bor4j14wd4nv" path="res://IMAGENES/fondo rojo.jpg" id="3_6r1ym"]
+[ext_resource type="Script" uid="uid://bn1eg7fgavips" path="res://Scrips/PanelInventario.cs" id="5_6r1ym"]
 
 [node name="MAIN" type="Node"]
 script = ExtResource("1_h7gr1")
@@ -19,5 +20,19 @@ nine_patch_stretch = true
 texture_under = ExtResource("2_epstd")
 texture_over = ExtResource("3_6r1ym")
 script = ExtResource("2_xdcoo")
+
+[node name="PanelInventario" type="Panel" parent="CanvasLayer"]
+offset_left = 314.0
+offset_top = 241.0
+offset_right = 825.0
+offset_bottom = 439.0
+script = ExtResource("5_6r1ym")
+
+[node name="ItemList" type="ItemList" parent="CanvasLayer/PanelInventario"]
+layout_mode = 0
+offset_left = 35.0
+offset_top = 16.0
+offset_right = 473.0
+offset_bottom = 173.0
 
 [node name="ContenedorNiveles" type="Node2D" parent="."]

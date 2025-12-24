@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://cnfjsvbgmn125"]
+
+[ext_resource type="Script" uid="uid://krdo41nun6k2" path="res://Scrips/Botiquin.cs" id="1_stb47"]
+[ext_resource type="Texture2D" uid="uid://bvlwcuy805gtf" path="res://IMAGENES/botiquin.png" id="1_tw0f2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_stb47"]
+size = Vector2(72, 56)
+
+[node name="Botiquin" type="Area2D"]
+collision_mask = 2
+script = ExtResource("1_stb47")
+
+[node name="Boti" type="Sprite2D" parent="."]
+scale = Vector2(0.14257813, 0.13085938)
+texture = ExtResource("1_tw0f2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_stb47")
