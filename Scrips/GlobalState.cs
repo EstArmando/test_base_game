@@ -16,7 +16,7 @@ public partial class GlobalState : Node
 
     private const string SAVE_FILE_PATH = "user://savegame.json";
 
-        //Propiedad para manejar la vida actual con lógica adicional
+
     public float vidaActual
     {
         get => _vidaActual;
