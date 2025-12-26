@@ -15,9 +15,10 @@ offset_left = 998.0
 offset_top = 3.0
 offset_right = 1154.0
 offset_bottom = 29.0
+scale = Vector2(0.9709434, 1.0782012)
 nine_patch_stretch = true
 texture_under = ExtResource("2_epstd")
-texture_over = ExtResource("3_6r1ym")
+texture_progress = ExtResource("3_6r1ym")
 script = ExtResource("2_xdcoo")
 
 [node name="ContenedorNiveles" type="Node2D" parent="."]

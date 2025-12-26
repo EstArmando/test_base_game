@@ -23,8 +23,8 @@ public partial class Main : Node
         _NivelActual = escenaNueva.Instantiate();
         _ContenedorNiveles.AddChild(_NivelActual);
 
-        var spawn = _NivelActual.GetNode<Node2D>("SpawnPoint");
-        var jugador = _NivelActual.GetNode<CharacterBody2d>("Personaje");
+        var spawn = _NivelActual.FindChild("SpawnPoint", recursive: true) as Node2D;
+        var jugador = _NivelActual.FindChild("Jugador", recursive: true) as Node2D;
 
         if (spawn != null && jugador != null)
         {
