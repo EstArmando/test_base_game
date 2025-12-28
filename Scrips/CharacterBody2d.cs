@@ -46,12 +46,6 @@ public partial class CharacterBody2d : CharacterBody2D
         }
     }
 
-    public void RecogerItem(string item)
-    {
-        _globalState.Inventario.Add(item);
-        GD.Print($"Item {item} recogido. Inventario actual: {string.Join(", ", _globalState.Inventario)}");
-    }
-
     public override void _PhysicsProcess(double delta)
     {
         //Manejo del knockback

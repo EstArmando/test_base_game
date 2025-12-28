@@ -31,4 +31,5 @@ public partial class Main : Node
             jugador.GlobalPosition = spawn.GlobalPosition;
         }
     }
+
 }

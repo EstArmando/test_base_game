@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="DatosItem" load_steps=3 format=3 uid="uid://b4b0hl1d5dr6v"]
+
+[ext_resource type="Texture2D" uid="uid://5tm23f83tsn5" path="res://IMAGENES/PocionVida.png" id="1_0grx6"]
+[ext_resource type="Script" uid="uid://d3xsvcm6j0qj3" path="res://DatosItem.cs" id="1_lulej"]
+
+[resource]
+script = ExtResource("1_lulej")
+nombreItem = "Pocion de vida"
+descripcionItem = "Al recogerlo regeneras 10 puntos de vida"
+iconoItem = ExtResource("1_0grx6")
+metadata/_custom_type_script = "uid://d3xsvcm6j0qj3"

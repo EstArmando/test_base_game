@@ -43,7 +43,7 @@ public partial class GlobalState : Node
     public void GuardarPartida()
     {
 
-        var  inventarioParaJson = new Godot.Collections.Array<string>(Inventario);
+        var  inventarioParaJson = new Godot.Collections.Array<DatosItem>(Inventario);
 
         var datos = new Godot.Collections.Dictionary<string, Variant>
         {
@@ -86,7 +86,7 @@ public partial class GlobalState : Node
                 var arrayCargado = (Godot.Collections.Array)datos["inventario"];
                 foreach (var item in arrayCargado)
                 {
-                    Inventario.Add((string)item);
+                    Inventario.Add((DatosItem)item);
                 }
 
             }
@@ -101,7 +101,9 @@ public partial class GlobalState : Node
         }
     }
 
-    public List<string> Inventario = new List<string>();
+    public List<DatosItem> Inventario = new List<DatosItem>();
+
+
 
     public override void _Ready()
     {
